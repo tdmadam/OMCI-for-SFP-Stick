@@ -22,8 +22,9 @@ or personal \/home/user/.local/lib/wireshark/plugins
 2. Copy the **omci.lua** and **BinDecHex.lua** files to one of the plugin folders.
 3. Use provided example omci-example.pcap to test your installation.
 
-## Extracting OMCI logs from V2801F SFP Stick - RTL9601CI
-1. Enable OMCI debug logs
+## Extracting OMCI logs from V2801F SFP Stick - RTL9601CI   
+
+#### Enable OMCI debug logs
 ```
 # flash set OMCI_DBGLVL 2    1-Driver 2-High 3-Normal 4-Low
 # flash set OMCI_LOGFILE_MASK 2
@@ -33,8 +34,9 @@ Notes:
 DBGLVL - 1 is the lowest, produces no hex dump. 4 is the highest, realtime.   
 Also present is the variable OMCI_LOGFILE 0. Changing this variable to 1 does not create any logs in the /tmp folder.   
 On the V2801F, the logs are only visible on the UART console.
-
-2. Example of output saved to omci.log
+   
+   
+#### Example of output saved to omci.log
 
 <details>
   <summary>Click to see OMCI log!</summary>
@@ -64,12 +66,26 @@ Message ID <0x000B0401>  : Class <11>, Instance <1025>
 RTK.0> command:
 </details>
   
-3. Filter OMCI hex from omci.log
+  #### Filter OMCI hex from omci.log
+
   ```
-  sed -n '/0x0000:\|0x0010:/p' omci.log | awk -F"0x00.0:   " '{print$2}' | sed -r 's/\s+//g' | awk '{ ORS = (NR%4 ? "" : RS) } 1' > omci.hex
+  sed -n '/0x0000:\|0x0010:/p' omci.log | awk -F"0x00.0:   " '{print$2}' | sed -r 's/\s+//g' | awk '{ ORS = (NR%4 ? "" : RS) } 1' > omci.cln
   ```
   Two OMCI messages after conversion:
   ```
   0000100A000B0401800000000000000000000000000000000000000000000000000000000000000100000028651AD04F
   0000100A000B040100000000000000000000000000000000000000000000000000000000000000020000002817267671
+  ```   
+  
+#### Convert raw OMCI to a format that Wireshark understands   
   ```
+  cat omci.cln | sed -e 's/.\{2\}/& /g' | sed -e 's/^/000000 /' > omci.hex
+  ```
+  Once again, two OMCI messages after conversion:   
+  ```
+  000000 00 00 10 0A 00 0B 04 01 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 28 65 1A D0 4F 
+  000000 00 00 10 0A 00 0B 04 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 28 17 26 76 71
+  ```  
+  
+  #### Display OMCI in the Wireshark
+  
