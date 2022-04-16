@@ -26,7 +26,7 @@ or personal \/home/user/.local/lib/wireshark/plugins
 
 #### Enable OMCI debug logs
 ```
-# flash set OMCI_DBGLVL 2    1-Driver 2-High 3-Normal 4-Low
+# flash set OMCI_DBGLVL 2
 # flash set OMCI_LOGFILE_MASK 2
 # reboot
 ```
