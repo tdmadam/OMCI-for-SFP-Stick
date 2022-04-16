@@ -127,5 +127,12 @@ Then just double click on the pcap file.
    ![omci](https://user-images.githubusercontent.com/52431348/163656575-4ce8717f-d7e7-40d1-89f3-710939222718.png)
 
    
+## To Do / Wishlist   
    
+   Find out if decoding is possible for other sticks, such as MA5671A or G-010S-A?     
+   Create a bash script that extracts import information such as software version, hardware ID, VLANs, etc. and displays it in a user-friendly format   
+   Update omci.lua with missing or vendor priopriatery MEs   
+   Redirect the log from UART ttyS0 to the user console?      
+   Run Wireshark capture in real-time?   
    
+
