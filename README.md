@@ -36,7 +36,9 @@ Also present is the variable OMCI_LOGFILE 0. Changing this variable to 1 does no
 On the V2801F, the logs are only visible on the UART console.
    
    
-#### Example of output saved to omci.log
+#### Example of the console output saved to omci.log   
+
+*It is recommended to save logs and perform file operations on Linux. It may be necessary to use dos2unix to convert line breaks if using Windows.*
 
 <details>
   <summary>Click to see OMCI log!</summary>
@@ -65,11 +67,12 @@ Message ID <0x000B0401>  : Class <11>, Instance <1025>
 
 RTK.0> command:
 </details>
-  
-  #### Filter OMCI hex from omci.log
+   
+   
+#### Filter OMCI from omci.log
 
   ```
-  sed -n '/0x0000:\|0x0010:/p' omci.log | awk -F"0x00.0:   " '{print$2}' | sed -r 's/\s+//g' | awk '{ ORS = (NR%4 ? "" : RS) } 1' > omci.cln
+  sed -n '/0x0000:\|0x0010:/p' omci.log | awk -F"0x00.0:   " '{print$2}' | sed -r 's/\s+//g' | awk '{ ORS = (NR%4 ? "" : RS) } 1' > omci.raw
   ```
   Two OMCI messages after conversion:
   ```
@@ -77,15 +80,52 @@ RTK.0> command:
   0000100A000B040100000000000000000000000000000000000000000000000000000000000000020000002817267671
   ```   
   
-#### Convert raw OMCI to a format that Wireshark understands   
+## Convert raw OMCI to a format that Wireshark understands   
   ```
-  cat omci.cln | sed -e 's/.\{2\}/& /g' | sed -e 's/^/000000 /' > omci.hex
+  cat omci.raw | sed -e 's/.\{2\}/& /g' | sed -e 's/^/000000 /' > omci.hex
   ```
-  Once again, two OMCI messages after conversion:   
+  In order for Wireshark to display these packets, each byte must be separated by a space, and there must be a start offset<000000> in front of it.
+   
+  The same OMCI messages after conversion:   
   ```
   000000 00 00 10 0A 00 0B 04 01 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 28 65 1A D0 4F 
   000000 00 00 10 0A 00 0B 04 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 28 17 26 76 71
   ```  
   
-  #### Display OMCI in the Wireshark
-  
+  ## Display omci.hex in the Wireshark
+   
+ To open the omci.hex file in Wireshark select:   
+   
+  File -> Import from Hex Dump   
+  Encapsulation Type -> Ethernet   
+  set Ethernet -> Ethertype (hex): 88b5   
+  Import   
+ 
+   ## Convert raw OMCI to pcap file   
+   
+   pcap file needs three additional elements
+   
+   ```
+    Destination Address  + Source Address + Ethertype
+    20:52:45:43:56:00   20:53:45:4e:44:00      88 b5
+   ```
+
+```
+cat omci.raw | sed 's/^/2052454356002053454e440088b5/g' | sed -e 's/.\{2\}/& /g' | sed -e 's/^/000000 /' > omci.pcp
+```
+
+The text2pcap program is part of the Wireshark installation, it loads an ASCII hexadecimal dump and writes the data to a pcap file.
+   
+```  
+text2pcap omci.pcp omci.pcap
+```
+
+   
+Then just double click on the pcap file.
+   
+
+   ![omci](https://user-images.githubusercontent.com/52431348/163656575-4ce8717f-d7e7-40d1-89f3-710939222718.png)
+
+   
+   
+   
