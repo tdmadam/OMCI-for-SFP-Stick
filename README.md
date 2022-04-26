@@ -22,66 +22,33 @@ or personal \/home/user/.local/lib/wireshark/plugins
 2. Copy the **omci.lua** and **BinDecHex.lua** files to one of the plugin folders.
 3. Use provided example omci-example.pcap to test your installation.
 
-## Extracting OMCI logs from V2801F SFP Stick - RTL9601CI   
+### [Extracting OMCI logs from V2801F SFP Stick - RTL9601CI](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/V2801F.md) 
 
-#### Enable OMCI debug logs
+### [Extracting OMCI logs from DFP-34X-2C2 Stick - RTL9601D](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/DFP34X.md)  
+
+
+## Sample OMCI log   
+
 ```
-# flash set OMCI_DBGLVL 2
-# flash set OMCI_LOGFILE_MASK 2
-# reboot
+00 00 10 0A 00 0B 04 01 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 28 65 1A D0 4F 
+00 00 10 0A 00 0B 04 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 28 17 26 76 71
 ```
-Notes:   
-DBGLVL - 1 is the lowest, produces no hex dump. 4 is the highest, realtime.   
-Also present is the variable OMCI_LOGFILE 0. Changing this variable to 1 does not create any logs in the /tmp folder.   
-On the V2801F, the logs are only visible on the UART console.
-   
-   
-#### Example of the console output saved to omci.log   
+## Convert OMCI log to a hex dump format that Wireshark understands
 
-*It is recommended to save logs and perform file operations on Linux. It may be necessary to use dos2unix to convert line breaks if using Windows.*
-
-<details>
-  <summary>Click to see OMCI log!</summary>
-its 5 =omci_send_to_nic() Fail=
-===
-Transaction ID <0x0000> : Prio <0>, tcId <0>
-Message Type <0x10> : DB <0x00>, AR <0x00>, AK <0x00>, MT <16> <Alarm>
-Device ID <0x0A>
-Message ID <0x000B0401>  : Class <11>, Instance <1025>
-
-0x0000:   00 00 10 0A 00 0B 04 01   
-0x0000:   80 00 00 00 00 00 00 00   00 00 00 00 00 00 00 00   
-0x0010:   00 00 00 00 00 00 00 00   00 00 00 00 00 00 00 01   
-0x0000:   00 00 00 28 65 1A D0 4F   
-
-=====================recv==============================================
-Transaction ID <0x0000> : Prio <0>, tcId <0>
-Message Type <0x10> : DB <0x00>, AR <0x00>, AK <0x00>, MT <16> <Alarm>
-Device ID <0x0A>
-Message ID <0x000B0401>  : Class <11>, Instance <1025>
-
-0x0000:   00 00 10 0A 00 0B 04 01   
-0x0000:   00 00 00 00 00 00 00 00   00 00 00 00 00 00 00 00   
-0x0010:   00 00 00 00 00 00 00 00   00 00 00 00 00 00 00 02   
-0x0000:   00 00 00 28 17 26 76 71   
-
-RTK.0> command:
-</details>
-   
-   
-#### Filter OMCI from omci.log
-
+In order for Wireshark to display these packets as a hex dump, each byte must be separated by a space and have a start offset<000000> before it.
+```
+cat omcilog | sed -e 's/^/000000 /' > omci.hex
+```
+  The same OMCI messages after conversion:   
   ```
-  sed -n '/0x0000:\|0x0010:/p' omci.log | awk -F"0x00.0:   " '{print$2}' | sed -r 's/\s+//g' | awk '{ ORS = (NR%4 ? "" : RS) } 1' > omci.raw
-  ```
-  Two OMCI messages after conversion:
-  ```
-  0000100A000B0401800000000000000000000000000000000000000000000000000000000000000100000028651AD04F
-  0000100A000B040100000000000000000000000000000000000000000000000000000000000000020000002817267671
-  ```   
-  
-## Convert raw OMCI to a format that Wireshark understands   
-  ```
+  000000 00 00 10 0A 00 0B 04 01 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 28 65 1A D0 4F 
+  000000 00 00 10 0A 00 0B 04 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 28 17 26 76 71
+  ```  
+
+
+<!-- Convert OMCI log to a format that Wireshark understands  
+
+```
   cat omci.raw | sed -e 's/.\{2\}/& /g' | sed -e 's/^/000000 /' > omci.hex
   ```
   In order for Wireshark to display these packets, each byte must be separated by a space, and there must be a start offset<000000> in front of it.
@@ -91,8 +58,10 @@ RTK.0> command:
   000000 00 00 10 0A 00 0B 04 01 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 28 65 1A D0 4F 
   000000 00 00 10 0A 00 0B 04 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 28 17 26 76 71
   ```  
+  -->
   
-  ## Display omci.hex in the Wireshark
+  
+  ## Display OMCI hex dump in the Wireshark
    
  To open the omci.hex file in Wireshark select:   
    
@@ -100,55 +69,32 @@ RTK.0> command:
   Encapsulation Type -> Ethernet   
   set Ethernet -> Ethertype (hex): 88b5   
   Import   
+  
+</br>
+
+ ## Convert OMCI log to a pcap file 
  
-   ## Convert raw OMCI to pcap file   
+
    
-   pcap file needs three additional elements
+ pcap file needs three additional elements
    
    ```
     Destination Address  + Source Address + Ethertype
-    20:52:45:43:56:00   20:53:45:4e:44:00      88 b5
-   ```
-
-```
-cat omci.raw | sed 's/^/2052454356002053454e440088b5/g' | sed -e 's/.\{2\}/& /g' | sed -e 's/^/000000 /' > omci.pcp
-```
+    20:52:45:43:56:00   20:53:45:4e:44:00      88 b5   
+   ```   
+```   
+cat omcilog | sed 's/^/20 52 45 43 56 00 20 53 45 4e 44 00 88 b5 /g' | sed -e 's/^/000000 /' > omci.pcp   
+text2pcap omci.pcp omci.pcap
+```   
 
 The text2pcap program is part of the Wireshark installation, it loads an ASCII hexadecimal dump and writes the data to a pcap file.
-   
-```  
-text2pcap omci.pcp omci.pcap
-```
-## Converting DFP-34X-2C2 OMCI logs
+</br>
 
-   For the DFP-34X-2C2 logs capturing looks a little different. The following needs to be configured
-   ```
-   # flash set OMCI_LOGFILE 1
-   # reboot
-   ```
- The logs will be available at /tmp/omcilog. To convert them to pcap, the following script should be used
-   
-```
-cat omcilog | sed 's/^/20 52 45 43 56 00 20 53 45 4e 44 00 88 b5 /g' | sed -e 's/^/000000 /' > omci.pcp
-text2pcap omci.pcp omci.pcap
-```
-After capturing don't forget to disable OMCI_LOGFILE 0
-   
-   
-   
-   
 Then just double click on the pcap file.
    
 
    ![omci](https://user-images.githubusercontent.com/52431348/163656575-4ce8717f-d7e7-40d1-89f3-710939222718.png)
 
    
-## To Do / Wishlist   
-   
-   Find out if decoding is possible for other sticks, such as MA5671A or G-010S-A?     
-   Create a bash script that extracts import information such as software version, hardware ID, VLANs, etc. and displays it in a user-friendly format   
-   Update omci.lua with missing or vendor priopriatery MEs   
-   Redirect the log from UART ttyS0 to the user console?      
-   Run Wireshark capture in real-time?   
    
 
