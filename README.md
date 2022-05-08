@@ -49,7 +49,7 @@ cat omcilog | sed -e 's/^/000000 /' > omci.hex
 <!-- Convert OMCI log to a format that Wireshark understands  
 
 ```
-  cat omci.raw | sed -e 's/.\{2\}/& /g' | sed -e 's/^/000000 /' > omci.hex
+  cat omci.raw | sed '{s/.\{2\}/& /g;s/^/000000 /}' > omci.hex
   ```
   In order for Wireshark to display these packets, each byte must be separated by a space, and there must be a start offset<000000> in front of it.
    
@@ -83,7 +83,7 @@ cat omcilog | sed -e 's/^/000000 /' > omci.hex
     20:52:45:43:56:00   20:53:45:4e:44:00      88 b5   
    ```   
 ```   
-cat omcilog | sed 's/^/20 52 45 43 56 00 20 53 45 4e 44 00 88 b5 /g' | sed -e 's/^/000000 /' > omci.pcp   
+cat omcilog | sed '{s/^/20 52 45 43 56 00 20 53 45 4e 44 00 88 b5 /g;s/^/000000 /}' > omci.pcp   
 text2pcap omci.pcp omci.pcap
 ```   
 
