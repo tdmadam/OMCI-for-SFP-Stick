@@ -26,6 +26,8 @@ or personal \/home/user/.local/lib/wireshark/plugins
 
 ### [Extracting OMCI logs from DFP-34X-2C2 Stick - RTL9601D](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/DFP34X.md)  
 
+### [Extracting OMCI logs from Broadcom units - BCM68380IFSBG](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/BCM68380.md)  
+
 
 ## Sample OMCI log   
 
