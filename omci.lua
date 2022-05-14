@@ -141,10 +141,10 @@ local mt2 = {
 }
 
 local omci_def = {
-[2] = { me_class_name = "ONT Data",
+[2] = { me_class_name = "ONT Data   (ME=2)",
 	{ attname="MIB Data Sync", length=1, setbycreate=false }},
 
-[5] = { me_class_name = "Cardholder",
+[5] = { me_class_name = "Cardholder   (ME=5)",
 	{ attname="Actual Plug-in Unit Type", length=1, setbycreate=false },
 	{ attname="Expected Plug-in Unit Type", length=1, setbycreate=false },
 	{ attname="Expected Port Count", length=1, setbycreate=false },
@@ -153,7 +153,7 @@ local omci_def = {
 	{ attname="Protection Profile Pointer", length=1, setbycreate=false },
 	{ attname="Invoke Protection Switch", length=1, setbycreate=false }},
 
-[6] = { me_class_name = "Circuit Pack",
+[6] = { me_class_name = "Circuit Pack    (ME=6)",
 	{ attname="Type", length=1, setbycreate=true },
 	{ attname="Number of ports", length=1, setbycreate=false },
 	{ attname="Serial Number", length=8, setbycreate=false },
@@ -169,13 +169,13 @@ local omci_def = {
 	{ attname="Total Traffic Scheduler Number", length=1, setbycreate=false },
 	{ attname="Power Shed Override", length=4, setbycreate=false }},
 
-[7] = { me_class_name = "Software Image",
+[7] = { me_class_name = "Software Image   (ME7)",
 	{ attname="Version", length=14, setbycreate=false },
 	{ attname="Is committed", length=1, setbycreate=false },
 	{ attname="Is active", length=1, setbycreate=false },
 	{ attname="Is valid", length=1, setbycreate=false }},
 
-[11] = { me_class_name = "PPTP Ethernet UNI",
+[11] = { me_class_name = "PPTP Ethernet UNI   (ME=11)",
 	{attname="Expected Type",			length=1, setbycreate=false},
 	{attname="Sensed Type",				length=1, setbycreate=false},
 	{attname="Auto Detection Configuration",	length=1, setbycreate=false},
@@ -192,7 +192,7 @@ local omci_def = {
 	{attname="PPPoE Filter",			length=1, setbycreate=false},
 	{attname="Power Control",			length=1, setbycreate=false}},
 
-[24] = { me_class_name = "Ethernet PM History Data",
+[24] = { me_class_name = "Ethernet PM History Data   (ME=24)",
 	{ attname="Interval End Time", length=1, setbycreate=false },
 	{ attname="Threshold Data 1/2 Id", length=2, setbycreate=true },
 	{ attname="FCS errors Drop events", length=4, setbycreate=false },
@@ -210,11 +210,11 @@ local omci_def = {
 	{ attname="Alignment Error Counter", length=4, setbycreate=false },
 	{ attname="Internal MAC Receive Error Counter", length=4, setbycreate=false}},
 
-[44] = { me_class_name = "Vendor Specific",
+[44] = { me_class_name = "Vendor Specific   (ME=44)",
 	{ attname="Sub-Entity", length=1, setbycreate=true },
 	subentity_attr = {}},
 		
-[45] = { me_class_name = "MAC Bridge Service Profile",
+[45] = { me_class_name = "MAC Bridge Service Profile   (ME=45)",
 	{ attname="Spanning tree ind", length=1, setbycreate=true },
 	{ attname="Learning ind", length=1, setbycreate=true },
 	{ attname="Port bridging ind", length=1, setbycreate=true },
@@ -225,7 +225,7 @@ local omci_def = {
 	{ attname="Unknown MAC address discard", length=1, setbycreate=true },
 	{ attname="MAC learning depth", length=1, setbycreate=true }},
 
-[47] = { me_class_name = "MAC bridge port configuration data",
+[47] = { me_class_name = "MAC Bridge Port Configuration Data   (ME=47)",
 	{ attname="Bridge id pointer", length=2, setbycreate=true },
 	{ attname="Port num", length=1, setbycreate=true },
 	{ attname="TP type", length=1, setbycreate=true },
@@ -239,19 +239,19 @@ local omci_def = {
 	{ attname="Outbound TD pointer", length=2, setbycreate=false },
 	{ attname="Inbound TD pointer", length=2, setbycreate=false }},
 
-[48] = { me_class_name = "MAC bridge port designation data",
+[48] = { me_class_name = "MAC Bridge Port Designation Data   (ME=48)",
 	{ attname="Designated bridge root cost port", length=24, setbycreate=false },
 	{ attname="Port state", length=1, setbycreate=false }},
 
-[49] = { me_class_name = "MAC bridge port filter table data",
+[49] = { me_class_name = "Bridge Port Filter Table Data   (ME=49)",
 	{ attname="MAC filter table", length=8, setbycreate=false }},
 
-[51] = { me_class_name = "MAC Bridge PM History Data",
+[51] = { me_class_name = "MAC Bridge PM History Data   (ME=51)",
 	{ attname="Interval end time", length=1, setbycreate=false },
 	{ attname="Threshold data 1/2 id", length=2, setbycreate=true },
 	{ attname="Bridge learning entry discard count", length=4, setbycreate=false }},
 
-[52] = { me_class_name = "MAC Bridge Port PM History Data",
+[52] = { me_class_name = "MAC Bridge Port PM History Data   (ME=52)",
 	{ attname="Interval end time", length=1, setbycreate=false },
 	{ attname="Threshold data 1/2 id", length=2, setbycreate=true },
 	{ attname="Forwarded frame counter", length=4, setbycreate=false },	
@@ -260,7 +260,7 @@ local omci_def = {
 	{ attname="Received frame counter", length=4, setbycreate=false },	
 	{ attname="Received and discarded counter", length=4, setbycreate=false }},
 
-[79] = { me_class_name = "MAC bridge port filter preassign table",
+[79] = { me_class_name = "MAC Bridge Port Filter Preassign Table   (ME=79)",
 	{ attname="IPv4 multicast filtering", length=1, setbycreate=false },
 	{ attname="IPv6 multicast filtering", length=1, setbycreate=false },
 	{ attname="IPv4 broadcast filtering", length=1, setbycreate=false },
@@ -271,24 +271,24 @@ local omci_def = {
 	{ attname="Bridge management information filtering", length=1, setbycreate=false },
 	{ attname="ARP filtering", length=1, setbycreate=false }},
 
-[82] = { me_class_name = "PPTP Video UNI",
+[82] = { me_class_name = "PPTP Video UNI   (ME=82)",
 	{attname="Administrative State", length=1, setbycreate=false},
 	{attname="Operational State", length=1, setbycreate=false},
 	{attname="ARC",	length=1, setbycreate=false},
 	{attname="ARC Interval", length=1, setbycreate=false},
 	{attname="Power Control", length=1, setbycreate=false}},
 	
-[84] = { me_class_name = "VLAN tagging filter data",
+[84] = { me_class_name = "VLAN Tagging Filter Data   (ME=84)",
 	{attname="VLAN filter list", length=24, setbycreate=true},
 	{attname="Forward operation", length=1, setbycreate=true},
 	{attname="Number of entries",	length=1, setbycreate=true}},
 
-[89] = { me_class_name = "Ethernet PM History Data 2",
+[89] = { me_class_name = "Ethernet PM History Data 2   (ME=89)",
 	{ attname="Interval end time", length=1, setbycreate=false },
 	{ attname="Threshold data 1/2 id", length=2, setbycreate=true },
 	{ attname="PPPoE filtered frame counter", length=4, setbycreate=false }},
 	
-[90] = { me_class_name = "PPTP Video ANI",
+[90] = { me_class_name = "PPTP Video ANI   (ME=90)",
 	{attname="Administrative State", length=1, setbycreate=false},
 	{attname="Operational State", length=1, setbycreate=false},
 	{attname="ARC",	length=1, setbycreate=false},
@@ -305,8 +305,17 @@ local omci_def = {
 	{attname="AGC Setting", length=1,	setbycreate=false},	
 	{attname="Video Lower Optical Threshold", length=1, setbycreate=false},
 	{attname="Video Upper Optical Threshold", length=1, setbycreate=false}},
+	
+[91] = { me_class_name = "PPTP IEEE 802.11 UNI   (ME=91)",
+	{attname="Administrative State", length=1, setbycreate=false},
+	{attname="Operational State", length=1, setbycreate=false},
+	{attname="Data Rate TX", length=8, setbycreate=false},
+	{attname="Data Rate RX", length=8, setbycreate=false},
+	{attname="TX Pwr Level", length=16, setbycreate=false},
+	{attname="ARC", length=1, setbycreate=false},
+	{attname="ARC Intvl", length=1,	setbycreate=false}},	
  
- [130] = { me_class_name = "802.1P Mapper Service Profile",
+[130] = { me_class_name = "802.1P Mapper Service Profile   (ME=130)",
 	{attname="TP Pointer",					length=2,  setbycreate=true},
 	{attname="Interwork TP pointer for P-bit priority 0",	length=2,  setbycreate=true},
 	{attname="Interwork TP pointer for P-bit priority 1",	length=2,  setbycreate=true},
@@ -321,12 +330,12 @@ local omci_def = {
 	{attname="Default P-bit marking",		length=1,  setbycreate=true},
 	{attname="TP Type:",					length=1,  setbycreate=true}},
 
-[131] = { me_class_name = "OLT-G",
+[131] = { me_class_name = "OLT-G   (ME=131)",
 	{attname="OLT vendor id",					length=4,  setbycreate=false},
 	{attname="Equipment id",	length=20,  setbycreate=false},
 	{attname="OLT version",	length=14,  setbycreate=false}},
 				
-[133] = { me_class_name = "ONT Power Shedding",
+[133] = { me_class_name = "ONT Power Shedding   (ME=133)",
 	{ attname="Restore power timer reset interval", length=2, setbycreate=false },
 	{ attname="Data class shedding interval", length=2, setbycreate=false },
 	{ attname="Voice class shedding interval", length=2, setbycreate=false },
@@ -338,24 +347,42 @@ local omci_def = {
 	{ attname="Frame class shedding interval", length=2, setbycreate=false },
 	{ attname="SONET class shedding interval", length=2, setbycreate=false },
 	{ attname="Shedding status", length=2, setbycreate=false }},
+		
+[134] = { me_class_name = "IP Host Config Data   (ME=134)",
+	{ attname="IP Options", length=1, setbycreate=false },
+	{ attname="MAC Address", length=6, setbycreate=false },
+	{ attname="ONU Identifier", length=1, setbycreate=false },
+	{ attname="IP Address", length=4, setbycreate=false },
+	{ attname="Mask", length=4, setbycreate=false },
+	{ attname="Gateway", length=4, setbycreate=false },
+	{ attname="Primary DNS", length=4, setbycreate=false },
+	{ attname="Secondary DNS", length=4, setbycreate=false },
+	{ attname="Current Address", length=4, setbycreate=false },
+	{ attname="Current Mask", length=4, setbycreate=false },
+	{ attname="Current Gateway", length=4, setbycreate=false },
+	{ attname="Current Primary DNS", length=4, setbycreate=false },
+	{ attname="Current Secondary DNS", length=4, setbycreate=false },
+	{ attname="Domain Name", length=12, setbycreate=false },
+	{ attname="Host Name", length=12, setbycreate=false },
+	{ attname="Relay Agent Options", length=2, setbycreate=false }},
 
-[158] = { me_class_name = "ONT remote debug",
+[158] = { me_class_name = "ONT Remote Debug   (ME=158)",
 	{ attname="Command format", length=1, setbycreate=false },
 	{ attname="Command", length=25, setbycreate=false },
 	{ attname="Reply table", length=4, setbycreate=false }},
 
-[159] = { me_class_name = "Equipment protection profile",
+[159] = { me_class_name = "Equipment Protection Profile   (ME=159)",
 	{ attname="Protect slot 1,protect slot 2", length=2, setbycreate=true },
 	{ attname="working slot 1,working slot 2,working slot 3,working slot 4,working slot 5,working slot 6,working slot 7,working slot 8", length=8, setbycreate=true },
 	{ attname="Protect status 1,protect status 2", length=2, setbycreate=false },
 	{ attname="Revertive ind", length=1, setbycreate=true },
 	{ attname="Wait to restore time", length=1, setbycreate=true }},
 
-[160] = { me_class_name = "Equipment extension package",
+[160] = { me_class_name = "Equipment Extension Package   (ME=160)",
 	{ attname="Environmental sense", length=2, setbycreate=false },
 	{ attname="Contact closure output", length=2, setbycreate=false }},
 
-[171] = { me_class_name = "Extended VLAN tagging operation configuration data",
+[171] = { me_class_name = "Extended VLAN Tagging Operation Configuration Data   (ME=171)",
 	{ attname="Association type", length=1, setbycreate=true },
 	{ attname="Received frame VLAN tagging operation table max size", length=2, setbycreate=false },
 	{ attname="Input TPID", length=2, setbycreate=false },
@@ -364,8 +391,17 @@ local omci_def = {
 	{ attname="Received frame VLAN tagging operation table", length=16, setbycreate=false },
 	{ attname="Associated ME pointer", length=2, setbycreate=true },
 	{ attname="DSCP to P-bit mapping", length=24, setbycreate=false }},
+
+[240] = { me_class_name = "ONT System MGMT   (ME=240)",
+						 },
+
+[253] = { me_class_name = "Loop Detect   (ME=253)",
+	{ attname="Admin State", length=1, setbycreate=false },
+	{ attname="ARC", length=1, setbycreate=false },
+	{ attname="ARC Interval", length=1, setbycreate=false },
+	{ attname="Eth Loop Detect Cfg", length=1, setbycreate=false }},
 	
-[256] = { me_class_name = "ONT-G",
+[256] = { me_class_name = "ONT-G   (ME=256)",
 	{ attname="Vendor Id", length=4, setbycreate=false },
 	{ attname="Version", length=14, setbycreate=false },
 	{ attname="Serial Nr", length=8, setbycreate=false },
@@ -375,7 +411,7 @@ local omci_def = {
 	{ attname="Administrative State", length=1, setbycreate=false },
 	{ attname="Operational State", length=1, setbycreate=false }},
 
-[257] = { me_class_name = "ONT2-G",
+[257] = { me_class_name = "ONT2-G   (ME=257)",
 	{ attname="Equipment id", length=20, setbycreate=false },
 	{ attname="OMCC version", length=1, setbycreate=false },
 	{ attname="Vendor product code", length=2, setbycreate=false },
@@ -387,12 +423,12 @@ local omci_def = {
 	{ attname="Total GEM port-ID number", length=2, setbycreate=false },
 	{ attname="SysUp Time", length=4, setbycreate=false }},
 
-[262] = { me_class_name = "T-CONT",
+[262] = { me_class_name = "T-CONT   (ME=262)",
 	{ attname="Alloc-id", length=2, setbycreate=false },
 	{ attname="Mode indicator", length=1, setbycreate=false },
 	{ attname="Policy", length=1, setbycreate=false }},
 
-[263] = { me_class_name = "ANI-G",
+[263] = { me_class_name = "ANI-G   (ME=263)",
 	{ attname="SR indication", length=1, setbycreate=false },
 	{ attname="Total T-CONT number", length=2, setbycreate=false },
 	{ attname="GEM block length", length=2, setbycreate=false },
@@ -410,11 +446,11 @@ local omci_def = {
 	{ attname="Lower transmit power threshold", length=1, setbycreate=false },
 	{ attname="Upper transmit power threshold", length=1, setbycreate=false }},
 
-[264] = { me_class_name = "UNI-G",
+[264] = { me_class_name = "UNI-G   (ME=264)",
 	{ attname="Config option status", length=2, setbycreate=false },
 	{ attname="Administrative state", length=1, setbycreate=false }},
 	
-[266] = { me_class_name = "GEM interworking Termination Point",
+[266] = { me_class_name = "GEM Interworking Termination Point   (ME=266)",
 	{ attname="GEM port network CTP connectivity pointer", length=2, setbycreate=true },
 	{ attname="Interworking option", length=1, setbycreate=true },
 	{ attname="Service profile pointer", length=2, setbycreate=true },
@@ -424,7 +460,7 @@ local omci_def = {
 	{ attname="GAL profile pointer", length=2, setbycreate=true },
 	{ attname="GAL loopback configuration", length=1, setbycreate=false }},
 
-[267] = { me_class_name = "GEM Port PM History Data",
+[267] = { me_class_name = "GEM Port PM History Data   (ME=267)",
 	{ attname="Interval end time", length=1, setbycreate=false },
 	{ attname="Threshold data 1/2 id", length=2, setbycreate=true },
 	{ attname="Lost packets", length=4, setbycreate=false },
@@ -434,7 +470,7 @@ local omci_def = {
 	{ attname="Transmitted blocks", length=5, setbycreate=false },
 	{ attname="Impaired blocks", length=4, setbycreate=false }},
 
-[268] = { me_class_name = "GEM Port Network CTP",
+[268] = { me_class_name = "GEM Port Network CTP   (ME=268)",
 	{ attname="Port id value", length=2, setbycreate=true },
 	{ attname="T-CONT pointer", length=2, setbycreate=true },
 	{ attname="Direction", length=1, setbycreate=true },
@@ -444,13 +480,13 @@ local omci_def = {
 	{ attname="Priority queue pointer for downstream", length=2, setbycreate=true },
 	{ attname="Encryption state", length=1, setbycreate=false }},
 
-[271] = { me_class_name = "GAL TDM profile",
+[271] = { me_class_name = "GAL TDM profile   (ME=271)",
 	{ attname="GEM frame loss integration period", length=2, setbycreate=true }},
 
-[272] = { me_class_name = "GAL Ethernet profile",
+[272] = { me_class_name = "GAL Ethernet profile   (ME=272)",
 	{ attname="Maximum GEM payload size", length=2, setbycreate=true }},
 
-[273] = { me_class_name = "Threshold Data 1",
+[273] = { me_class_name = "Threshold Data 1   (ME=273)",
 	{attname="Threshold value 1",	length=4,  setbycreate=true},
 	{attname="Threshold value 2",	length=4,  setbycreate=true},
 	{attname="Threshold value 3",	length=4,  setbycreate=true},
@@ -459,7 +495,7 @@ local omci_def = {
 	{attname="Threshold value 6",	length=4,  setbycreate=true},
 	{attname="Threshold value 7",	length=4,  setbycreate=true}},
 
-[274] = { me_class_name = "Threshold Data 2",
+[274] = { me_class_name = "Threshold Data 2   (ME=274)",
 	{attname="Threshold value 8",	length=4,  setbycreate=true},
 	{attname="Threshold value 9",	length=4,  setbycreate=true},
 	{attname="Threshold value 10",	length=4,  setbycreate=true},
@@ -468,19 +504,19 @@ local omci_def = {
 	{attname="Threshold value 13",	length=4,  setbycreate=true},
 	{attname="Threshold value 14",	length=4,  setbycreate=true}},
 
-[275] = { me_class_name = "GAL TDM PM History Data",
+[275] = { me_class_name = "GAL TDM PM History Data   (ME=275)",
 	{ attname="Interval end time", length=1, setbycreate=false },
 	{ attname="Threshold data 1/2 id", length=2, setbycreate=true },
 	{ attname="GEM frame loss", length=4, setbycreate=false },
 	{ attname="Buffer underflows", length=4, setbycreate=false },
 	{ attname="Buffer overflows", length=4, setbycreate=false }},
 
-[276] = { me_class_name = "GAL Ethernet PM History Data",
+[276] = { me_class_name = "GAL Ethernet PM History Data   (ME=276)",
 	{ attname="Interval end time", length=1, setbycreate=false },
 	{ attname="Threshold data 1/2 id", length=2, setbycreate=true },
 	{ attname="Discarded frames", length=4, setbycreate=false }},
 
-[277] = { me_class_name = "Priority queue-G",
+[277] = { me_class_name = "Priority queue-G   (ME=277)",
 	{attname="Queue Configuration Option",		length=1,  setbycreate=false},
 	{attname="Maximum Queue Size",			length=2,  setbycreate=false},
 	{attname="Allocated Queue Size",		length=2,  setbycreate=false},
@@ -494,21 +530,32 @@ local omci_def = {
 	{attname="Back Pressure Occur Queue Threshold",	length=2,  setbycreate=false},
 	{attname="Back Pressure Clear Queue Threshold",	length=2,  setbycreate=false}},
 
-[278] = { me_class_name = "Traffic Scheduler-G",
+[278] = { me_class_name = "Traffic Scheduler-G   (ME=278)",
 	{ attname="TCONT pointer", length=2, setbycreate=false },
 	{ attname="traffic shed pointer", length=2, setbycreate=false },
 	{ attname="policy", length=1, setbycreate=false },
 	{ attname="priority/weight", length=1, setbycreate=false }},
 	
-[279] = { me_class_name = "Protection data",
+[279] = { me_class_name = "Protection data   (ME=279)",
 	{ attname="Working ANI-G pointer", length=2, setbycreate=false },
 	{ attname="Protection ANI-G pointer", length=2, setbycreate=false },
 	{ attname="Protection type", length=2, setbycreate=false },
 	{ attname="Revertive ind", length=1, setbycreate=false },
 	{ attname="Wait to restore time", length=1, setbycreate=false },
 	{ attname="Switching guard time", length=2, setbycreate=false }},
+	
+[280] = { me_class_name = "Traffic descriptor   (ME=280)",
+	{ attname="CIR", length=4, setbycreate=false },
+	{ attname="PIR", length=4, setbycreate=false },
+	{ attname="CBS", length=4, setbycreate=false },
+	{ attname="PBS", length=4, setbycreate=false },
+	{ attname="Colour Mode", length=1, setbycreate=false },
+	{ attname="Ingress Colour Marking", length=1, setbycreate=false },
+	{ attname="Egress Colour Marking", length=1, setbycreate=false },
+	{ attname="Meter Type", length=1, setbycreate=false }},
 
-[281] = { me_class_name = "Multicast GEM interworking termination point",
+
+[281] = { me_class_name = "Multicast GEM interworking termination point   (ME=281)",
 	{ attname="GEM port network CTP connectivity pointer", length=2, setbycreate=true },
 	{ attname="Interworking option", length=1, setbycreate=true },
 	{ attname="Service profile pointer", length=2, setbycreate=true },
@@ -519,12 +566,12 @@ local omci_def = {
 	{ attname="GAL loopback configuration", length=1, setbycreate=true },
 	{ attname="Multicast address table", length=12, setbycreate=false }},
 
-[287] = { me_class_name = "OMCI",
+[287] = { me_class_name = "OMCI   (ME=287)",
 	{ attname="ME Type Table", length=2, setbycreate=false },
 	{ attname="Message Type Table", length=2, setbycreate=false }},
 
 
-[290] = { me_class_name = "Dot1X Port Extension Package",
+[290] = { me_class_name = "Dot1X Port Extension Package   (ME=290)",
 	{ attname="Dot1x Enable", length=1, setbycreate=false },
 	{ attname="Action Register", length=1, setbycreate=false },
 	{ attname="Authenticator PAE State", length=1, setbycreate=false },
@@ -538,7 +585,7 @@ local omci_def = {
 	{ attname="Reauthentication Enabled", length=1, setbycreate=false },
 	{ attname="Key transmission Enabled", length=1, setbycreate=false }},
 
-[296] = { me_class_name = "Ethernet PM History Data 3",
+[296] = { me_class_name = "Ethernet PM History Data 3   (ME=296)",
 	{ attname="Interval End Time", length=1, setbycreate=false },
 	{ attname="Threshold Data 1/2 Id", length=2, setbycreate=true },
 	{ attname="Drop events", length=4, setbycreate=false },
@@ -556,7 +603,7 @@ local omci_def = {
 	{ attname="Packets 512 to 1023 Octets", length=4, setbycreate=false },
 	{ attname="Packets 1024 to 1518 Octets", length=4, setbycreate=false }},
 	
-[297] = { me_class_name = "Port mapping package-G",
+[297] = { me_class_name = "Port Mapping Package-G   (ME=297)",
 	{ attname="Max ports", length=1, setbycreate=false },
 	{ attname="Port list 1", length=16, setbycreate=false },
 	{ attname="Port list 2", length=16, setbycreate=false },
@@ -567,7 +614,7 @@ local omci_def = {
 	{ attname="Port list 7", length=16, setbycreate=false },
 	{ attname="Port list 8", length=16, setbycreate=false }},
 
-[309] = { me_class_name = "Multicast operations profile",
+[309] = { me_class_name = "Multicast Operations Profile   (ME=309)",
 	{ attname="IGMP version", length=1, setbycreate=true },
 	{ attname="IGMP function", length=1, setbycreate=true },
 	{ attname="Immediate leave", length=1, setbycreate=true },
@@ -583,21 +630,21 @@ local omci_def = {
 	{ attname="Query max response time", length=4, setbycreate=true },		
 	{ attname="Last member query interval", length=4, setbycreate=false }},
 
-[310] = { me_class_name = "Multicast subscriber config info",
+[310] = { me_class_name = "Multicast Subscriber Config Info   (ME=310)",
 	{ attname="ME type", length=1, setbycreate=true },
 	{ attname="Multicast operations profile pointer", length=2, setbycreate=true },
 	{ attname="Max simultaneous groups", length=2, setbycreate=true },
 	{ attname="Max multicast bandwidth", length=4, setbycreate=true },
 	{ attname="Bandwidth enforcement", length=1, setbycreate=true }},	
 	
-[311] = { me_class_name = "Multicast Subscriber Monitor",
+[311] = { me_class_name = "Multicast Subscriber Monitor   (ME=311)",
 	{ attname="ME type", length=1, setbycreate=true },
 	{ attname="Current multicast bandwidth", length=4, setbycreate=false },
 	{ attname="Max Join messages counter", length=4, setbycreate=false },
 	{ attname="Bandwidth exceeded counter:", length=4, setbycreate=false },
 	{ attname="Active group list table", length=24, setbycreate=false }},	
 
-	[312] = { me_class_name = "FEC PM History Data",
+[312] = { me_class_name = "FEC PM History Data   (ME=312)",
 	{ attname="Interval end time", length=1, setbycreate=false },
 	{ attname="Threshold data 1/2 id", length=2, setbycreate=true },
 	{ attname="Corrected bytes", length=4, setbycreate=false },
@@ -606,7 +653,7 @@ local omci_def = {
 	{ attname="Total code words", length=4, setbycreate=false },
 	{ attname="FEC seconds", length=2, setbycreate=false }},
 
-[321] = { me_class_name = "Ethernet Frame PM History Data DS",
+[321] = { me_class_name = "Ethernet Frame PM History Data DS   (ME=321)",
 	{ attname="Interval End Time", length=1, setbycreate=false },
 	{ attname="Threshold Data 1/2 Id", length=2, setbycreate=true },
 	{ attname="Drop events", length=4, setbycreate=false },
@@ -624,7 +671,7 @@ local omci_def = {
 	{ attname="Packets 512 to 1023 Octets", length=4, setbycreate=false },
 	{ attname="Packets 1024 to 1518 Octets", length=4, setbycreate=false }},
 
-[322] = { me_class_name = "Ethernet Frame PM History Data US",
+[322] = { me_class_name = "Ethernet Frame PM History Data US   (ME=322)",
 	{ attname="Interval End Time", length=1, setbycreate=false },
 	{ attname="Threshold Data 1/2 Id", length=2, setbycreate=true },
 	{ attname="Drop events", length=4, setbycreate=false },
@@ -641,6 +688,21 @@ local omci_def = {
 	{ attname="Packets 256 to 511 Octets", length=4, setbycreate=false },
 	{ attname="Packets 512 to 1023 Octets", length=4, setbycreate=false },
 	{ attname="Packets 1024 to 1518 Octets", length=4, setbycreate=false }},
+
+[329] = { me_class_name = "Virtual Ethernet Interface Point VEIP   (ME=329)",
+	{ attname="Administrative State", length=1, setbycreate=false },
+	{ attname="Operational State", length=1, setbycreate=false },
+	{ attname="Interdomain Name", length=25, setbycreate=false },
+	{ attname="TCP UDP Pointer", length=2, setbycreate=false },
+	{ attname="IANA Assigned Port", length=1, setbycreate=false }},
+
+[347] = { me_class_name = "IPv6 Host Config Data   (ME=347)",
+	{ attname="Administrative State", length=1, setbycreate=false },
+	{ attname="Operational State", length=1, setbycreate=false },
+	{ attname="Interdomain Name", length=4, setbycreate=false },
+	{ attname="TCP UDP Pointer", length=2, setbycreate=false },
+	{ attname="IANA Assigned Port", length=2, setbycreate=false }},
+	
 }
 
 setmetatable(omci_def, mt2)
