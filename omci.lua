@@ -260,6 +260,21 @@ local omci_def = {
 	{ attname="Received frame counter", length=4, setbycreate=false },	
 	{ attname="Received and discarded counter", length=4, setbycreate=false }},
 
+[53] = { me_class_name = "PPTP POTS UNI   (ME=53)",
+	{ attname="Administrative State", length=1, setbycreate=false },
+	{ attname="Deprecated", length=2, setbycreate=false },
+	{ attname="ARC", length=1, setbycreate=false },	
+	{ attname="ARC Interval", length=1, setbycreate=false },	
+	{ attname="Impendance", length=1, setbycreate=false },	
+	{ attname="Transmission Path", length=1, setbycreate=false },
+	{ attname="RX Gain", length=1, setbycreate=false },
+	{ attname="TX Gain", length=1, setbycreate=false },
+	{ attname="Operational State", length=1, setbycreate=false },
+	{ attname="Hook State", length=1, setbycreate=false },
+	{ attname="POTS Holdover Time", length=2, setbycreate=false },
+	{ attname="Nominal Feed Voltage", length=1, setbycreate=false },	
+	{ attname="Loss Of Softswitch", length=1, setbycreate=false }},
+
 [79] = { me_class_name = "MAC Bridge Port Filter Preassign Table   (ME=79)",
 	{ attname="IPv4 multicast filtering", length=1, setbycreate=false },
 	{ attname="IPv6 multicast filtering", length=1, setbycreate=false },
@@ -365,6 +380,27 @@ local omci_def = {
 	{ attname="Domain Name", length=12, setbycreate=false },
 	{ attname="Host Name", length=12, setbycreate=false },
 	{ attname="Relay Agent Options", length=2, setbycreate=false }},
+	
+[138] = { me_class_name = "VoIP Config Data   (ME=138)",
+	{ attname="Available Signalling Protocols", length=1, setbycreate=false },
+	{ attname="Signalling Protocol Used", length=1, setbycreate=false },
+	{ attname="Available VoIP Configuration Methods", length=4, setbycreate=false },
+	{ attname="VoIP Configuration Method Used", length=1, setbycreate=false },
+	{ attname="VoIP Configuration Address Pointer", length=2, setbycreate=false },
+	{ attname="VoIP Configuration State", length=1, setbycreate=false },
+	{ attname="Retrieve Profile", length=1, setbycreate=false },
+	{ attname="Profile Version", length=10, setbycreate=false }},
+
+[141] = { me_class_name = "VoIP Line Status   (ME=141)",
+	{ attname="VoIP Codec Used", length=2, setbycreate=false },
+	{ attname="VoIP Voice Server Status", length=1, setbycreate=false },
+	{ attname="VoIP Port Session Type", length=1, setbycreate=false },
+	{ attname="VoIP Call 1 Packet Period", length=2, setbycreate=false },
+	{ attname="VoIP Call 2 Packet Period", length=2, setbycreate=false },
+	{ attname="VoIP Call 1 Dest Addr", length=10, setbycreate=false },
+	{ attname="VoIP Call 2 Dest Addr", length=10, setbycreate=false },
+	{ attname="VoIP Line State", length=1, setbycreate=false },
+	{ attname="Emergency Call Status", length=1, setbycreate=false }},
 
 [158] = { me_class_name = "ONT Remote Debug   (ME=158)",
 	{ attname="Command format", length=1, setbycreate=false },
@@ -695,7 +731,12 @@ local omci_def = {
 	{ attname="Interdomain Name", length=25, setbycreate=false },
 	{ attname="TCP UDP Pointer", length=2, setbycreate=false },
 	{ attname="IANA Assigned Port", length=1, setbycreate=false }},
-
+	
+[340] = { me_class_name = "BBF TR-069 Management Server   (ME=340)",
+	{ attname="Administrative State", length=1, setbycreate=false },
+	{ attname="ACS Network Address", length=2, setbycreate=false },
+	{ attname="Associated Tag", length=2, setbycreate=false }},
+	
 [347] = { me_class_name = "IPv6 Host Config Data   (ME=347)",
 	{ attname="Administrative State", length=1, setbycreate=false },
 	{ attname="Operational State", length=1, setbycreate=false },
@@ -978,4 +1019,4 @@ end
 
 -- Register the dissector
 local ether_table = DissectorTable.get( "ethertype" )
-ether_table:add(0x88B5, omciproto) 
+ether_table:add(0x88B5, omciproto)
