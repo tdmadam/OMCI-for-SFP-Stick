@@ -14,9 +14,12 @@ https://code.google.com/archive/p/omci-wireshark-dissector/
 Fortunately for us, omci-dissector plugins are now part of the Wireshark plugin repository. The latest available version from 2014 is 14-3-13-r11.
 https://wiki.wireshark.org/Contrib#Protocol_Dissectors
 
-I recommend using <b>omci.lua</b> from my repository, as I have started updating this file with the missing MEs.
+I recommend using <b>omci.lua</b> from my repository, as I have started updating this file with the missing MEs. 
 
-The following description is a general overview that applies to most devices. Detailed instructions for <b>RTL9601CI V2801F, RTL9601D DFP-34X-2C2 or BCM68380 Broadcom</b> devices can be found at the bottom of the page.
+Detailed instructions for <b>RTL9601CI V2801F, RTL9601D DFP-34X-2C2 or BCM68380 Broadcom</b> devices can be found at the bottom of the page.
+
+
+The following description is a general overview that applies to most devices.
 
 ## Wireshark plugins installation
 
