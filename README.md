@@ -11,9 +11,12 @@ The page 475 of the 11/17 version of the document lists all Managed Entity(ME) i
 Work on omci-wireshark-dissector which is the most popular software used for OMCI decoding started about 10 years ago. The original repository is still on google code.
 https://code.google.com/archive/p/omci-wireshark-dissector/
 
-Fortunately for us, omci-dissector plugins are now part of the Wireshark plugin repository. The latest version available is 14-3-13-r11.
+Fortunately for us, omci-dissector plugins are now part of the Wireshark plugin repository. The latest available version from 2014 is 14-3-13-r11.
 https://wiki.wireshark.org/Contrib#Protocol_Dissectors
 
+I recommend using <b>omci.lua</b> from my repository, as I have started updating this file with the missing MEs.
+
+The following description is a general overview that applies to most devices. Detailed instructions for <b>RTL9601CI V2801F, RTL9601D DFP-34X-2C2 or BCM68380 Broadcom</b> devices can be found at the bottom of the page.
 
 ## Wireshark plugins installation
 
@@ -22,11 +25,7 @@ or personal \/home/user/.local/lib/wireshark/plugins
 2. Copy the **omci.lua** and **BinDecHex.lua** files to one of the plugin folders.
 3. Use provided example omci-example.pcap to test your installation.
 
-### [Extracting OMCI logs from V2801F SFP Stick - RTL9601CI](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/V2801F.md) 
-
-### [Extracting OMCI logs from DFP-34X-2C2 Stick - RTL9601D](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/DFP34X.md)  
-
-### [Extracting OMCI logs from Broadcom units - BCM68380IFSBG](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/BCM68380.md)  
+ 
 
 
 ## Sample OMCI log   
@@ -78,7 +77,7 @@ cat omcilog | sed -e 's/^/000000 /' > omci.hex
  
 
    
- pcap file needs three additional elements
+ pcap file needs three additional elements. Start with the original omcilog file.
    
    ```
     Destination Address  + Source Address + Ethertype
@@ -97,6 +96,14 @@ Then just double click on the pcap file.
 
    ![omci](https://user-images.githubusercontent.com/52431348/163656575-4ce8717f-d7e7-40d1-89f3-710939222718.png)
 
+
+
+## More detailed methods for specific devices.
    
+### [Extracting OMCI logs from V2801F SFP Stick - RTL9601CI](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/V2801F.md) 
+
+### [Extracting OMCI logs from DFP-34X-2C2 Stick - RTL9601D](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/DFP34X.md)  
+
+### [Extracting OMCI logs from Broadcom units - BCM68380IFSBG](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/BCM68380.md) 
    
 
