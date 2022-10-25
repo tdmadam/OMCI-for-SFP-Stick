@@ -107,6 +107,8 @@ Then just double click on the pcap file.
 
 ### [Extracting OMCI logs from DFP-34X-2C2 Stick - RTL9601D](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/DFP34X.md)  
 
-### [Extracting OMCI logs from Broadcom units - BCM68380IFSBG](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/BCM68380.md) 
+### [Extracting OMCI logs from Broadcom units - BCM68380IFSBG](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/BCM68380.md)
+
+### [Extracting OMCI logs from Lantiq G-010S-A and G-010G-A units](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/modules/G010SA.md) 
    
 
