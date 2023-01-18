@@ -812,8 +812,8 @@ function omciproto.dissector (buffer, pinfo, tree)
 	offset = offset +  4
 	
 	-- OMCI Attributes and/or message result	
-	local content = buffer(offset, 32)
-	if( (msg_type_mt == "Get" or msg_type_mt == "Get Current Data") and msg_type_ar == 1 and msg_type_ak == 0) then
+	local content = buffer(offset, math.min(32, buffer:len() - offset))
+	if( (msg_type_mt == "Get" or msg_type_mt == "Get Current Data" or msg_type_mt == "Get Next") and msg_type_ar == 1 and msg_type_ak == 0) then
 		local attribute_mask = content(0, 2)
 		local attributemask_subtree = subtree:add(attribute_mask, "Attribute Mask (0x" .. attribute_mask .. ")" )
 		attributemask_subtree:add(attribute_mask, tostring(BinDecHex.Hex2Bin(tostring(attribute_mask))))
@@ -827,7 +827,7 @@ function omciproto.dissector (buffer, pinfo, tree)
 		end
 	end
 
-	if( (msg_type_mt == "Get" or msg_type_mt == "Get Current Data") and msg_type_ar == 0 and msg_type_ak == 1) then
+	if( (msg_type_mt == "Get" or msg_type_mt == "Get Current Data" or msg_type_mt == "Get Next") and msg_type_ar == 0 and msg_type_ak == 1) then
 		subtree:add(content(0,1), "Result: " .. msg_result[content(0,1):uint()] .. " (" .. content(0,1) .. ")")
 		local attribute_mask = content(1, 2)
 		local attributemask_subtree = subtree:add(attribute_mask, "Attribute Mask (0x" .. attribute_mask .. ")" )
