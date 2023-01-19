@@ -27,7 +27,7 @@ Detailed instructions for <b>RTL9601CI V2801F, RTL9601D DFP-34X-2C2 or BCM68380 
 1. After wireshark is installed go to: *Help, About Wireshark, Folders* and locate your plugins folder. My global is /usr/lib64/wireshark/plugins
 or personal \/home/user/.local/lib/wireshark/plugins
 2. Copy the **omci.lua** and **BinDecHex.lua** files to one of the plugin folders.
-3. Use provided example omci-example.pcap to test your installation.
+3. Use provided omci-example.pcap from wiki.wireshark.org to test your installation.
 
  
 
