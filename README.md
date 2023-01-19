@@ -19,7 +19,8 @@ I recommend using <b>omci.lua</b> from my repository, as I have started updating
 Detailed instructions for <b>RTL9601CI V2801F, RTL9601D DFP-34X-2C2 or BCM68380 Broadcom</b> devices can be found at the bottom of the page.
 
 
-The following description is a general overview that applies to most devices.
+
+# General overview that applies to most devices.
 
 ## Wireshark plugins installation
 
