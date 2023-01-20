@@ -32,7 +32,8 @@ or personal \/home/user/.local/lib/wireshark/plugins
  
 
 
-## Sample OMCI log   
+## Example of two OMCI messages from omcilog   
+Each messages is 48 bytes including at the end CRC32 based on AAL5 algorithm implementation. [Calculating CRC32 for OMCI](https://github.com/tdmadam/OMCI-for-SFP-Stick/blob/main/files/crc32_aal5.md)  
 
 ```
 00 00 10 0A 00 0B 04 01 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 28 65 1A D0 4F 
