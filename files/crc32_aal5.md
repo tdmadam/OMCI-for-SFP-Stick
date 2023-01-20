@@ -1,6 +1,4 @@
 
-Finding useful online calculators for OMCI CRC32 is not an easy task, as most of them use other algorithms. The same is true for the crc32 tool on Linux or the zlib library.
-
 Verification of GPON OMCI communications relies on the implementation of the CRC32 algorithm found in the [ITU-T I363.5 ATM Adaptation Layer : Type 5 AAL](https://www.itu.int/rec/T-REC-I.363.5/en) specification.
 The same algorithm is used for bzip2 file compression.
 
